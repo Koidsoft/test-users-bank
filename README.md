@@ -19,31 +19,6 @@ migraciones de base de datos.
 El proyecto sigue una **arquitectura hexagonal**, con interfaces claras para la persistencia de datos (
 `UserPersistence`) y casos de uso (`CreateUserUseCase`, `FindByUserUseCase`).
 
-## Endpoints
-
-### Crear usuario
-
-La API cuenta con una ruta principal para la creación de usuarios:
-
-**URL**: `http://localhost:8080/api/v1/users`  
-**Método**: `POST`
-
-#### Cuerpo de la solicitud:
-
-````json
-{
-    "name": "Juan Rodriguez",
-    "email": "juan@rodriguez.org",
-    "password": "1234",
-    "phones": [
-        {
-            "number": "1234567",
-            "cityCode": "1",
-            "countryCode": "57"
-        }
-    ]
-}````
-
 
 name: Nombre del usuario (obligatorio).
 email: Correo electrónico del usuario (obligatorio y único).
@@ -51,7 +26,8 @@ password: Contraseña del usuario (obligatoria).
 phones: Lista de teléfonos del usuario. Cada teléfono tiene un número, un código de ciudad (cityCode) y un código de país (countryCode) (todos obligatorios).
 
 Todos los campos son obligatorios para crear un usuario exitosamente.
-Base de datos
+
+**Base de datos**
 
 El proyecto utiliza una base de datos en memoria H2, ideal para pruebas y desarrollo rápido. Además, se gestiona la base de datos con la librería FlywayDB, que se encarga de crear y versionar los scripts SQL de migración.
 FlywayDB
@@ -77,8 +53,6 @@ Ejecutar las pruebas
 
 Puedes ejecutar las pruebas unitarias con el siguiente comando:
 
-
-
 ./gradlew test
 
 Las pruebas verifican:
@@ -86,3 +60,28 @@ Las pruebas verifican:
 La correcta creación de usuarios.
 La validación de campos obligatorios.
 La interacción con las capas de persistencia mediante el uso de Mockito.
+
+## Endpoints
+
+### Crear usuario
+
+La API cuenta con una ruta principal para la creación de usuarios:
+
+**URL**: `http://localhost:8080/api/v1/users`  
+**Método**: `POST`
+
+#### Cuerpo de la solicitud:
+
+````json
+{
+    "name": "Juan Rodriguez",
+    "email": "juan@rodriguez.org",
+    "password": "1234",
+    "phones": [
+        {
+            "number": "1234567",
+            "cityCode": "1",
+            "countryCode": "57"
+        }
+    ]
+}
